@@ -7,15 +7,10 @@ function love.load()
   alpha = 0
   alphaIncrementer = 1
   alphaMultiplier = 3
-  -- dx = 0
-  -- dy = 0
-  -- dist = 0
-  -- inv = 0
+
   love.physics.setMeter(64) --the height of a meter our worlds will be 64px
   world = love.physics.newWorld(0, 0, true)
   love.window.setMode(650, 650)
-  -- Background
-  --love.graphics.setBackgroundColor(194, 210, 174)
 
   background = Background:new(0, 0, {
     size = 25,
@@ -64,13 +59,13 @@ function love.update(dt)
 
   alpha = alpha + alphaMultiplier * alphaIncrementer
 
-  if love.keyboard.isDown("d") then --press the right arrow key to push the ball to the right
+  if love.keyboard.isDown("d") then
     block.body:applyForce(400, 0)
   end
-  if love.keyboard.isDown("a") then --press the left arrow key to push the ball to the left
+  if love.keyboard.isDown("a") then
     block.body:applyForce(-400, 0)
   end
-  if love.keyboard.isDown("w") then --press the up arrow key to set the ball in the air
+  if love.keyboard.isDown("w") then
     block.body:applyForce(0, -400)
   end
   if love.keyboard.isDown("s") then
