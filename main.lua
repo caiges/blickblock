@@ -10,7 +10,7 @@ function love.load()
 
   love.physics.setMeter(64) --the height of a meter our worlds will be 64px
   world = love.physics.newWorld(0, 0, true)
-  love.window.setMode(650, 650)
+  love.window.setMode(650, 650) -- create our window
 
   background = Background:new(0, 0, {
     size = 25,
@@ -71,12 +71,6 @@ function love.update(dt)
   if love.keyboard.isDown("s") then
     block.body:applyForce(0, 400)
   end
-
-  dx = block.body:getX() - block.body_2:getX()
-  dy = block.body:getY() - block.body_2:getY()
-  dist = math.sqrt(dx * dx + dy * dy)
-
-  block.body_2:applyForce(dx * 4 / dist, dy * 4 / dist)
 end
 
 function love.draw()
