@@ -2,6 +2,7 @@ require('utils/trace')
 
 local Block = require('entities/block')
 local Background = require('entities/background')
+local Collision = require('collision')
 
 math.randomseed(os.time())
 
@@ -13,8 +14,13 @@ function love.load()
   alphaIncrementer = 1
   alphaMultiplier = 3
 
-  love.physics.setMeter(64) --the height of a meter our worlds will be 64px
+  --love.physics.setMeter(64) --the height of a meter our worlds will be 64px
+
+  -- Initialize our world
   world = love.physics.newWorld(0, 0, true)
+  world.setCallbacks(world, Collision.beginContact, Collision.endContact, Collision.preSolve, Collision.postSolve)
+  world.setGravity(world, 0, 50)
+
   love.window.setMode(650, 650) -- create our window
 
   background = Background:new(0, 0, {
@@ -50,7 +56,8 @@ function love.load()
   })
   background:build()
 
-  block = Block:new(world, 200, 200)
+  block = Block:new(world, 0, 0)
+  block2 = Block:new(world, 200, 0)
 end
 
 function love.update(dt)
@@ -87,6 +94,7 @@ function love.draw()
 
   background:draw()
   block:draw()
+  block2:draw()
 
   trace.draw()
 end
