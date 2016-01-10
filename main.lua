@@ -1,9 +1,14 @@
+require('utils/trace')
+
 local Block = require('entities/block')
 local Background = require('entities/background')
 
 math.randomseed(os.time())
 
 function love.load()
+  love.graphics.setBackgroundColor(63, 63, 63)
+  trace.print('Trace initialized.', trace.styles.green)
+
   alpha = 0
   alphaIncrementer = 1
   alphaMultiplier = 3
@@ -82,4 +87,6 @@ function love.draw()
 
   background:draw()
   block:draw()
+
+  trace.draw()
 end
