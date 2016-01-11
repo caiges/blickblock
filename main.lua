@@ -57,7 +57,7 @@ function love.load()
   block = Block:new(world, 25, 25, 50, 50)
   block2 = Block:new(world, 225, 25, 50, 50)
 
-  ground = Ground:new(world)
+  ground = Ground:new(world, 325, 649, 650, 1)
 end
 
 function love.update(dt)

@@ -2,11 +2,8 @@ require('../utils/trace')
 
 Ground = {}
 
-function Ground:new(world)
-  local width = love.window.getWidth()
-  local height = 5
-
-  body = love.physics.newBody(world, love.window.getWidth() / 2, 500, 'static')
+function Ground:new(world, x, y, width, height)
+  body = love.physics.newBody(world, x, y, 'static')
   shape = love.physics.newRectangleShape(width, height)
   fixture = love.physics.newFixture(body, shape)
 
