@@ -1,12 +1,9 @@
 Block = {}
 
-function Block:new(world, x, y)
-  local width = 50
-  local height = 50
-
+function Block:new(world, x, y, width, height)
   body = love.physics.newBody(world, x, y, "dynamic")
   shape = love.physics.newRectangleShape(width, height)
-  fixture = love.physics.newFixture(body, shape, 1)
+  fixture = love.physics.newFixture(body, shape)
   fixture:setRestitution(0)
 
   newObj = {
@@ -14,7 +11,6 @@ function Block:new(world, x, y)
     y = y,
     width = width,
     height = height,
-    segments = 100,
     body = body,
     shape = shape,
     fixture = fixture
@@ -25,7 +21,7 @@ end
 
 function Block:draw()
   love.graphics.setColor(255, 255, 255)
-  love.graphics.rectangle("fill", self.body:getX(), self.body:getY(), self.width, self.height)
+  love.graphics.polygon('fill', self.body:getWorldPoints(self.shape:getPoints()))
 end
 
 return Block
