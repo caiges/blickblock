@@ -3,6 +3,7 @@ require('utils/trace')
 local Block = require('entities/block')
 local Background = require('entities/background')
 local Ground = require('entities/ground')
+local Wall = require('entities/wall')
 local Collision = require('collision')
 
 math.randomseed(os.time())
@@ -58,6 +59,8 @@ function love.load()
   block2 = Block:new(world, 225, 25, 50, 50)
 
   ground = Ground:new(world, 325, 649, 650, 1)
+  leftWall = Wall:new(world, 1, 325, 1, 650)
+  rightWall = Wall:new(world, 649, 325, 1, 650)
 end
 
 function love.update(dt)
@@ -97,6 +100,8 @@ function love.draw()
   block2:draw()
 
   ground:draw()
+  leftWall:draw()
+  rightWall:draw()
 
   trace.draw()
 end
