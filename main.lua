@@ -20,7 +20,8 @@ function love.load()
   world = love.physics.newWorld(0, 50, true)
   world.setCallbacks(world, Collision.beginContact, Collision.endContact, Collision.preSolve, Collision.postSolve)
 
-  love.window.setMode(650, 650) -- create our window
+  love.window.setMode(650, 650) -- set options for our window
+  love.window.setTitle('BlickBlock')
 
   background = Background:new(0, 0, {
     size = 25,
